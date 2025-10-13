@@ -8,6 +8,7 @@
         <version>3.5.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+    <packaging>jar</packaging>
     <groupId>com.masterilidan</groupId>
     <artifactId>message-service-twitterlike</artifactId>
     <version>0.0.1-SNAPSHOT</version>

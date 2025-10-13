@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: message-service-twitterlike
-          image: message-service-twitterlike:latest
+          image: localhost:32000/message-service-twitterlike:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

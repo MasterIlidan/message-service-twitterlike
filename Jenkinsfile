@@ -27,14 +27,13 @@ pipeline {
         stage('Docker build') {
             steps {
                 echo 'Building docker image...'
-                echo '${DOCKER_IMAGE_NAME}:${env.GIT_COMMIT}'
-                sh 'docker build -t $DOCKER_IMAGE_NAME:${env.GIT_COMMIT} .'
+                sh 'docker build -t message-service-twitterlike:latest .'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Pull image to kubernetes...'
-                sh 'docker save $DOCKER_IMAGE_NAME > myimage.tar'
+                sh 'docker save message-service-twitterlike > myimage.tar'
                 sh 'microk8s ctr image import myimage.tar'
                 sh 'rm myimage.tar'
                 echo 'Deploy to Kubernetes...'

@@ -27,7 +27,7 @@ pipeline {
         stage('Docker build') {
             steps {
                 echo 'Building docker image...'
-                echo '$DOCKER_IMAGE_NAME:${env.GIT_COMMIT}'
+                echo '${DOCKER_IMAGE_NAME}:${env.GIT_COMMIT}'
                 sh 'docker build -t $DOCKER_IMAGE_NAME:${env.GIT_COMMIT} .'
             }
         }

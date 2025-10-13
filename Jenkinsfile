@@ -34,7 +34,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploy to Kubernetes...'
-                sh 'microk8s kubectl rollout restart deployment message-service-twitterlike'
+                sh 'microk8s kubectl rollout restart deployment message-service-twitterlike || true'
                 sh "microk8s kubectl apply -f deployment.yaml"
                 sh "microk8s kubectl apply -f service.yaml"
             }

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-app
+  name: message-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: DemoApp
+      app: message-service-twitterlike
   template:
     metadata:
       labels:
-        app: DemoApp
+        app: message-service-twitterlike
     spec:
       containers:
-        - name: hello-app-container
-          image: <ECR-REPO-LINK>:${IMAGE_TAG}
+        - name: message-service-twitterlike
+          image: message-service-twitterlike:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

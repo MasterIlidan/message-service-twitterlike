@@ -27,18 +27,15 @@ pipeline {
         stage('Docker build') {
             steps {
                 echo 'Building docker image...'
-                sh 'docker build -t message-service-twitterlike:latest .'
+                sh 'docker build -t localhost:32000/message-service-twitterlike:latest .'
+                sh 'docker push localhost:32000/message-service-twitterlike:latest'
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Pull image to kubernetes...'
-                sh 'docker save message-service-twitterlike > myimage.tar'
-                sh 'microk8s ctr image import myimage.tar'
-                sh 'rm myimage.tar'
                 echo 'Deploy to Kubernetes...'
-                sh "kubectl apply -f deployment.yaml"
-                sh "kubectl apply -f service.yaml"
+                sh "microk8s kubectl apply -f deployment.yaml"
+                sh "microk8s kubectl apply -f service.yaml"
             }
 
         }

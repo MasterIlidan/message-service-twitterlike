@@ -23,12 +23,15 @@ Twitterlike - twitter-подобное веб-приложение. Проект
 
 [TwitterlikeFrontend](https://github.com/MasterIlidan/twitterlike-front) - фронтенд приложения
 
+[APIGateway](https://github.com/MasterIlidan/api-gateway-twitterlike) - API Gateway
+
+
 # TODO проекта
 
 - [ ] внедрить Apache Kafka для обработки событий
   - [ ] NotificationService для уведомления пользователя о новом сообщений или посте у пользователя
     на которого он подписан
- - [ ] единая точка входа API Gateway
+ - [x] единая точка входа API Gateway
  - [ ] уйти от REST при Service-Service коммуникации к gRPC
  - [x] настроить Jenkins для сборки и деплоя проекта
  - [ ] запускать фронт не в IDE :)

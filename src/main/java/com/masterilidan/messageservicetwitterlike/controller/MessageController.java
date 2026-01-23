@@ -1,5 +1,6 @@
 package com.masterilidan.messageservicetwitterlike.controller;
 
+import com.masterilidan.messageservicetwitterlike.config.UrlConfigurer;
 import com.masterilidan.messageservicetwitterlike.dto.MessageDto;
 import com.masterilidan.messageservicetwitterlike.entity.Message;
 import com.masterilidan.messageservicetwitterlike.repository.MessageRepository;
@@ -26,9 +27,12 @@ import java.util.List;
 @Controller
 public class MessageController {
 
+    private final UrlConfigurer urlConfigurer;
+
     private static final Logger log = LoggerFactory.getLogger(MessageController.class);
     private final MessageRepository messageRepository;
-    MessageController(MessageRepository messageRepository) {
+    MessageController(UrlConfigurer urlConfigurer, MessageRepository messageRepository) {
+        this.urlConfigurer = urlConfigurer;
         this.messageRepository = messageRepository;
     }
     @PostMapping("/messages")
@@ -57,8 +61,7 @@ public class MessageController {
         HttpRequest request = HttpRequest.newBuilder()
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
-                //TODO: конфигуриемая ссылка
-                .uri(URI.create("http://192.168.0.179:8080/user" + createdBy))
+                .uri(URI.create("http://" + urlConfigurer.getBaseAddrUserService() + "/user" + createdBy))
                 .build();
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
